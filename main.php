@@ -100,7 +100,7 @@ class Farm {
     private $_storage     = array();
     private $_previous_processed_valuable = array();
 
-    public function buy( string $pet_type_name, int $count = 1 ) {
+    public function buyAnimal( string $pet_type_name, int $count = 1 ) {
         for ( $index = 0; $index < $count; $index++ ) {
             if ( isset( $this->_inhabitants[ $pet_type_name::getPronounce() ] ) ) {
                 array_push(
@@ -111,6 +111,32 @@ class Farm {
             } else {
                 $this->_inhabitants[ $pet_type_name::getPronounce() ] = array( new $pet_type_name() );
             }
+        }
+    }
+
+    public function addAnimal( object $animal, int $count = 1 ) {
+        for ( $index = 0; $index < $count; $index++ ) {
+            if ( isset( $this->_inhabitants[ $animal::getPronounce() ] ) ) {
+                array_push(
+                    $this->_inhabitants[ $animal::getPronounce() ],
+                    new ( get_class( $animal ) )()
+                );
+
+            } else {
+                $this->_inhabitants[ $animal::getPronounce() ] = array( new ( get_class( $animal ) )() );
+            }
+        }
+    }
+
+    public function addPet( object $pet ) {
+        if ( isset( $this->_inhabitants[ $pet::getPronounce() ] ) ) {
+            array_push(
+                $this->_inhabitants[ $pet::getPronounce() ],
+                $pet
+            );
+
+        } else {
+            $this->_inhabitants[ $pet::getPronounce() ] = array( $pet );
         }
     }
 
@@ -169,8 +195,8 @@ print(
     "\033[0m\n"
 );
 
-$farm->buy( "Cow", 10 );
-$farm->buy( "Chicken", 20 );
+$farm->buyAnimal( "Cow", 10 );
+$farm->buyAnimal( "Chicken", 20 );
 
 $farm->printInhabitantsCount();
 
@@ -192,8 +218,8 @@ foreach ( $farm->getStorage() as $valuable_name => $valuable_instance ) {
 
 $farm->rememberProcessedValuable();
 
-$farm->buy( "Chicken", 5 );
-$farm->buy( "Cow", 1 );
+$farm->buyAnimal( "Chicken", 5 );
+$farm->buyAnimal( "Cow", 1 );
 
 $farm->printInhabitantsCount();
 
