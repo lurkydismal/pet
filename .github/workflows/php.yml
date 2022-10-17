@@ -1,0 +1,27 @@
+name: PHP
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Note: This workflow uses the latest stable version of the PHP.
+      # You can specify other versions if desired, see documentation here:
+      # https://github.com/shivammathur/setup-php/blob/master/README.md
+      # - uses: shivammathur/setup-php@2.21.1
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.21.2
+
+      - name: Verify formatting
+        run: php -l main.php
+
+      - name: Run
+        run: php main.php
