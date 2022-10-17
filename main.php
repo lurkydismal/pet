@@ -10,7 +10,7 @@ abstract class BasePet implements IPet {
     private $_ID = 0;
 
     public function __construct() {
-        $this->_ID = uniqid( rand() );
+        $this->_ID = uniqid( mt_rand() );
     }
 
     public function getID() {
@@ -39,7 +39,7 @@ class Cow extends BasePet implements IPet {
     }
 
     public function produceValuable() {
-        return ( new Milk( rand( 8, 12 ) ) );
+        return ( new Milk( mt_rand( 8, 12 ) ) );
     }
 
     public static function getPronounce() {
@@ -55,7 +55,7 @@ class Chicken extends BasePet implements IPet {
     }
 
     public function produceValuable() {
-        return ( new Egg( rand( 0, 1 ) ) );
+        return ( new Egg( mt_rand( 0, 1 ) ) );
     }
 
     public static function getPronounce() {
