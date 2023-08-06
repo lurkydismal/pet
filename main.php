@@ -96,9 +96,9 @@ class Egg extends BaseValuable implements IValuable {
 }
 
 class Farm {
-    private $Inhabitants = array();
-    private $Storage     = array();
-    private $PreviousProcessedValuable = array();
+    private $Inhabitants = [];
+    private $Storage     = [];
+    private $PreviousProcessedValuable = [];
 
     public function buyAnimal( string $pet_type_name, int $Count = 1 ) {
         for ( $index = 0; $index < $Count; $index++ ) {
@@ -110,7 +110,7 @@ class Farm {
 
             } else {
                 $this->Inhabitants[ $pet_type_name::getPronounce() ] =
-                    array( new $pet_type_name() );
+                    [ new $pet_type_name() ];
             }
         }
     }
@@ -125,7 +125,7 @@ class Farm {
 
             } else {
                 $this->Inhabitants[ $animal::getPronounce() ] =
-                    array( new ( get_class( $animal ) )() );
+                    [ new ( get_class( $animal ) )() ];
             }
         }
     }
@@ -138,7 +138,7 @@ class Farm {
             );
 
         } else {
-            $this->Inhabitants[ $pet::getPronounce() ] = array( $pet );
+            $this->Inhabitants[ $pet::getPronounce() ] = [ $pet ];
         }
     }
 
