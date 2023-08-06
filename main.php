@@ -109,7 +109,8 @@ class Farm {
                 );
 
             } else {
-                $this->_Inhabitants[ $pet_type_name::getPronounce() ] = array( new $pet_type_name() );
+                $this->_Inhabitants[ $pet_type_name::getPronounce() ] =
+                    array( new $pet_type_name() );
             }
         }
     }
@@ -123,7 +124,8 @@ class Farm {
                 );
 
             } else {
-                $this->_Inhabitants[ $animal::getPronounce() ] = array( new ( get_class( $animal ) )() );
+                $this->_Inhabitants[ $animal::getPronounce() ] =
+                    array( new ( get_class( $animal ) )() );
             }
         }
     }
@@ -147,7 +149,8 @@ class Farm {
                 $product = $inhabitant->produceValuable();
 
                 if ( isset( $this->_Storage[ $product::getPronounce() ] ) ) {
-                    $this->_Storage[ $product::getPronounce() ]->Count += $product->Count;
+                    $this->_Storage[ $product::getPronounce() ]->Count +=
+                        $product->Count;
 
                 } else {
                     $this->_Storage[ $product::getPronounce() ] = $product;
@@ -189,9 +192,12 @@ $farm->rememberProcessedValuable();
 
 print(
     "\033[1;33m" .
-    "Летом, чтобы отдохнуть от городской суеты, вы поехали к дяде на ферму.\n" .
-    "Через несколько дней отдых вам наскучил, и вы решили поупражняться в программировании.\n" .
-    "Зайдя в хлев, где живут коровы и куры, и увидев как работает автоматический сборщик молока и яиц, \n".
+    "Летом, чтобы отдохнуть от городской суеты, " .
+    "вы поехали к дяде на ферму.\n" .
+    "Через несколько дней отдых вам наскучил, " .
+    "и вы решили поупражняться в программировании.\n" .
+    "Зайдя в хлев, где живут коровы и куры, " .
+    "и увидев как работает автоматический сборщик молока и яиц, \n" .
     "вы решили описать его работу в парадигме ООП." .
     "\033[0m\n"
 );
@@ -235,7 +241,8 @@ foreach ( $farm->getStorage() as $valuable_name => $valuable_instance ) {
     printf(
         "%s в количестве %d %s\n",
         $valuable_name,
-        $valuable_instance->Count - $farm->getRememberedStorage()[ $valuable_name ]->Count,
+        ( $valuable_instance->Count -
+            $farm->getRememberedStorage()[ $valuable_name ]->Count ),
         $valuable_instance::getCountPronounce()
     );
 }
