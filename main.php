@@ -141,6 +141,7 @@ class Farm {
     }
 
     public function produceValuable() {
+        // unused $inhabitants_type
         foreach ( $this->_Inhabitants as $inhabitants_type => $inhabitants ) {
             foreach ( $inhabitants as $inhabitant ) {
                 $product = $inhabitant->produceValuable();
