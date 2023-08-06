@@ -151,7 +151,8 @@ class Farm {
             foreach ( $inhabitants as $inhabitant ) {
                 $product = $inhabitant->produceValuable();
 
-                if ( isset( $this->_Storage[ $product::getPronounce() ] ) ) {
+                if ( isset( $this->_Storage[ $product::getPronounce() ] )
+                    === true ) {
                     $this->_Storage[ $product::getPronounce() ]->Count
                         += $product->Count;
 
