@@ -109,8 +109,8 @@ class Farm {
                 );
 
             } else {
-                $this->Inhabitants[ $pet_type_name::getPronounce() ] =
-                    [ new $pet_type_name() ];
+                $this->Inhabitants[ $pet_type_name::getPronounce() ]
+                    = [ new $pet_type_name() ];
             }
         }
     }
@@ -124,8 +124,8 @@ class Farm {
                 );
 
             } else {
-                $this->Inhabitants[ $animal::getPronounce() ] =
-                    [ new ( get_class( $animal ) )() ];
+                $this->Inhabitants[ $animal::getPronounce() ]
+                    = [ new ( get_class( $animal ) )() ];
             }
         }
     }
@@ -149,8 +149,8 @@ class Farm {
                 $product = $inhabitant->produceValuable();
 
                 if ( isset( $this->Storage[ $product::getPronounce() ] ) ) {
-                    $this->Storage[ $product::getPronounce() ]->Count +=
-                        $product->Count;
+                    $this->Storage[ $product::getPronounce() ]->Count
+                        += $product->Count;
 
                 } else {
                     $this->Storage[ $product::getPronounce() ] = $product;
