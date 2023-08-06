@@ -7,14 +7,14 @@ interface IPet {
 }
 
 abstract class BasePet implements IPet {
-    private $_ID = 0;
+    private $ID = 0;
 
     public function __construct() {
-        $this->_ID = uniqid( mt_rand() );
+        $this->ID = uniqid( mt_rand() );
     }
 
     public function getID() {
-        return ( $this->_ID );
+        return ( $this->ID );
     }
 
     abstract public function produceValuable();
@@ -96,20 +96,20 @@ class Egg extends BaseValuable implements IValuable {
 }
 
 class Farm {
-    private $_Inhabitants = array();
-    private $_Storage     = array();
-    private $_PreviousProcessedValuable = array();
+    private $Inhabitants = array();
+    private $Storage     = array();
+    private $PreviousProcessedValuable = array();
 
     public function buyAnimal( string $pet_type_name, int $Count = 1 ) {
         for ( $index = 0; $index < $Count; $index++ ) {
-            if ( isset( $this->_Inhabitants[ $pet_type_name::getPronounce() ] ) ) {
+            if ( isset( $this->Inhabitants[ $pet_type_name::getPronounce() ] ) ) {
                 array_push(
-                    $this->_Inhabitants[ $pet_type_name::getPronounce() ],
+                    $this->Inhabitants[ $pet_type_name::getPronounce() ],
                     new $pet_type_name()
                 );
 
             } else {
-                $this->_Inhabitants[ $pet_type_name::getPronounce() ] =
+                $this->Inhabitants[ $pet_type_name::getPronounce() ] =
                     array( new $pet_type_name() );
             }
         }
@@ -117,66 +117,66 @@ class Farm {
 
     public function addAnimal( object $animal, int $Count = 1 ) {
         for ( $index = 0; $index < $Count; $index++ ) {
-            if ( isset( $this->_Inhabitants[ $animal::getPronounce() ] ) ) {
+            if ( isset( $this->Inhabitants[ $animal::getPronounce() ] ) ) {
                 array_push(
-                    $this->_Inhabitants[ $animal::getPronounce() ],
+                    $this->Inhabitants[ $animal::getPronounce() ],
                     new ( get_class( $animal ) )()
                 );
 
             } else {
-                $this->_Inhabitants[ $animal::getPronounce() ] =
+                $this->Inhabitants[ $animal::getPronounce() ] =
                     array( new ( get_class( $animal ) )() );
             }
         }
     }
 
     public function addPet( object $pet ) {
-        if ( isset( $this->_Inhabitants[ $pet::getPronounce() ] ) ) {
+        if ( isset( $this->Inhabitants[ $pet::getPronounce() ] ) ) {
             array_push(
-                $this->_Inhabitants[ $pet::getPronounce() ],
+                $this->Inhabitants[ $pet::getPronounce() ],
                 $pet
             );
 
         } else {
-            $this->_Inhabitants[ $pet::getPronounce() ] = array( $pet );
+            $this->Inhabitants[ $pet::getPronounce() ] = array( $pet );
         }
     }
 
     public function produceValuable() {
         // unused $inhabitants_type
-        foreach ( $this->_Inhabitants as $inhabitants_type => $inhabitants ) {
+        foreach ( $this->Inhabitants as $inhabitants_type => $inhabitants ) {
             foreach ( $inhabitants as $inhabitant ) {
                 $product = $inhabitant->produceValuable();
 
-                if ( isset( $this->_Storage[ $product::getPronounce() ] ) ) {
-                    $this->_Storage[ $product::getPronounce() ]->Count +=
+                if ( isset( $this->Storage[ $product::getPronounce() ] ) ) {
+                    $this->Storage[ $product::getPronounce() ]->Count +=
                         $product->Count;
 
                 } else {
-                    $this->_Storage[ $product::getPronounce() ] = $product;
+                    $this->Storage[ $product::getPronounce() ] = $product;
                 }
             }
         }
     }
 
     public function rememberProcessedValuable() {
-        foreach ( $this->_Storage as $valuable_name => $valuable ) {
-            $this->_PreviousProcessedValuable[ $valuable_name ] = clone $valuable;
+        foreach ( $this->Storage as $valuable_name => $valuable ) {
+            $this->PreviousProcessedValuable[ $valuable_name ] = clone $valuable;
         }
     }
 
     public function getStorage() {
-        return ( $this->_Storage );
+        return ( $this->Storage );
     }
 
     public function getRememberedStorage() {
-        return ( $this->_PreviousProcessedValuable );
+        return ( $this->PreviousProcessedValuable );
     }
 
     public function printInhabitantsCount() {
         print( "На ферме имеются:\n"  );
 
-        foreach ( $this->_Inhabitants as $pet_type_name => $inhabitants ) {
+        foreach ( $this->Inhabitants as $pet_type_name => $inhabitants ) {
             printf(
                 "%s в количестве %d\n",
                 $pet_type_name,
