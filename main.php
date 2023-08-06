@@ -4,7 +4,7 @@ interface IPet {
     public function getID();
     public function produceValuable();
     public static function getPronounce();
-}
+} //end interface IPet
 
 abstract class BasePet implements IPet {
     private $PetId = 0;
@@ -24,7 +24,7 @@ abstract class BasePet implements IPet {
 interface IValuable {
     public static function getPronounce();
     public static function getCountPronounce();
-}
+} //end interface IValuable
 
 abstract class BaseValuable implements IValuable {
     abstract public static function getPronounce();
