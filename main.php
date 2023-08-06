@@ -102,7 +102,7 @@ class Farm {
 
     public function buyAnimal( string $pet_type_name, int $Count = 1 ) {
         for ( $index = 0; $index < $Count; $index++ ) {
-            if ( isset( $this->Inhabitants[ $pet_type_name::getPronounce() ] ) ) {
+            if ( isset( $this->Inhabitants[ $pet_type_name::getPronounce() ] ) === TRUE ) {
                 array_push(
                     $this->Inhabitants[ $pet_type_name::getPronounce() ],
                     new $pet_type_name()
@@ -117,7 +117,7 @@ class Farm {
 
     public function addAnimal( object $animal, int $Count = 1 ) {
         for ( $index = 0; $index < $Count; $index++ ) {
-            if ( isset( $this->Inhabitants[ $animal::getPronounce() ] ) ) {
+            if ( isset( $this->Inhabitants[ $animal::getPronounce() ] ) === TRUE ) {
                 array_push(
                     $this->Inhabitants[ $animal::getPronounce() ],
                     new ( get_class( $animal ) )()
@@ -131,7 +131,7 @@ class Farm {
     }
 
     public function addPet( object $pet ) {
-        if ( isset( $this->Inhabitants[ $pet::getPronounce() ] ) ) {
+        if ( isset( $this->Inhabitants[ $pet::getPronounce() ] ) === TRUE ) {
             array_push(
                 $this->Inhabitants[ $pet::getPronounce() ],
                 $pet
