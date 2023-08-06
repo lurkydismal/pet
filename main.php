@@ -64,10 +64,10 @@ class Chicken extends BasePet implements IPet {
 }
 
 class Milk extends BaseValuable implements IValuable {
-    public $count = 0;
+    public $Count = 0;
 
-    public function __construct( int $count ) {
-        $this->count = $count;
+    public function __construct( int $Count ) {
+        $this->Count = $Count;
     }
 
     public static function getPronounce() {
@@ -80,10 +80,10 @@ class Milk extends BaseValuable implements IValuable {
 }
 
 class Egg extends BaseValuable implements IValuable {
-    public $count = 0;
+    public $Count = 0;
 
-    public function __construct( int $count ) {
-        $this->count = $count;
+    public function __construct( int $Count ) {
+        $this->Count = $Count;
     }
 
     public static function getPronounce() {
@@ -96,87 +96,87 @@ class Egg extends BaseValuable implements IValuable {
 }
 
 class Farm {
-    private $_inhabitants = array();
-    private $_storage     = array();
-    private $_previous_processed_valuable = array();
+    private $_Inhabitants = array();
+    private $_Storage     = array();
+    private $_PreviousProcessedValuable = array();
 
-    public function buyAnimal( string $pet_type_name, int $count = 1 ) {
-        for ( $index = 0; $index < $count; $index++ ) {
-            if ( isset( $this->_inhabitants[ $pet_type_name::getPronounce() ] ) ) {
+    public function buyAnimal( string $pet_type_name, int $Count = 1 ) {
+        for ( $index = 0; $index < $Count; $index++ ) {
+            if ( isset( $this->_Inhabitants[ $pet_type_name::getPronounce() ] ) ) {
                 array_push(
-                    $this->_inhabitants[ $pet_type_name::getPronounce() ],
+                    $this->_Inhabitants[ $pet_type_name::getPronounce() ],
                     new $pet_type_name()
                 );
 
             } else {
-                $this->_inhabitants[ $pet_type_name::getPronounce() ] = array( new $pet_type_name() );
+                $this->_Inhabitants[ $pet_type_name::getPronounce() ] = array( new $pet_type_name() );
             }
         }
     }
 
-    public function addAnimal( object $animal, int $count = 1 ) {
-        for ( $index = 0; $index < $count; $index++ ) {
-            if ( isset( $this->_inhabitants[ $animal::getPronounce() ] ) ) {
+    public function addAnimal( object $animal, int $Count = 1 ) {
+        for ( $index = 0; $index < $Count; $index++ ) {
+            if ( isset( $this->_Inhabitants[ $animal::getPronounce() ] ) ) {
                 array_push(
-                    $this->_inhabitants[ $animal::getPronounce() ],
+                    $this->_Inhabitants[ $animal::getPronounce() ],
                     new ( get_class( $animal ) )()
                 );
 
             } else {
-                $this->_inhabitants[ $animal::getPronounce() ] = array( new ( get_class( $animal ) )() );
+                $this->_Inhabitants[ $animal::getPronounce() ] = array( new ( get_class( $animal ) )() );
             }
         }
     }
 
     public function addPet( object $pet ) {
-        if ( isset( $this->_inhabitants[ $pet::getPronounce() ] ) ) {
+        if ( isset( $this->_Inhabitants[ $pet::getPronounce() ] ) ) {
             array_push(
-                $this->_inhabitants[ $pet::getPronounce() ],
+                $this->_Inhabitants[ $pet::getPronounce() ],
                 $pet
             );
 
         } else {
-            $this->_inhabitants[ $pet::getPronounce() ] = array( $pet );
+            $this->_Inhabitants[ $pet::getPronounce() ] = array( $pet );
         }
     }
 
     public function produceValuable() {
-        foreach ( $this->_inhabitants as $inhabitants_type => $inhabitants ) {
+        foreach ( $this->_Inhabitants as $inhabitants_type => $inhabitants ) {
             foreach ( $inhabitants as $inhabitant ) {
                 $product = $inhabitant->produceValuable();
 
-                if ( isset( $this->_storage[ $product::getPronounce() ] ) ) {
-                    $this->_storage[ $product::getPronounce() ]->count += $product->count;
+                if ( isset( $this->_Storage[ $product::getPronounce() ] ) ) {
+                    $this->_Storage[ $product::getPronounce() ]->Count += $product->Count;
 
                 } else {
-                    $this->_storage[ $product::getPronounce() ] = $product;
+                    $this->_Storage[ $product::getPronounce() ] = $product;
                 }
             }
         }
     }
 
     public function rememberProcessedValuable() {
-        foreach ( $this->_storage as $valuable_name => $valuable ) {
-            $this->_previous_processed_valuable[ $valuable_name ] = clone $valuable;
+        foreach ( $this->_Storage as $valuable_name => $valuable ) {
+            $this->_PreviousProcessedValuable[ $valuable_name ] = clone $valuable;
         }
     }
 
     public function getStorage() {
-        return ( $this->_storage );
+        return ( $this->_Storage );
     }
 
     public function getRememberedStorage() {
-        return ( $this->_previous_processed_valuable );
+        return ( $this->_PreviousProcessedValuable );
     }
 
     public function printInhabitantsCount() {
         print( "На ферме имеются:\n"  );
 
-        foreach ( $this->_inhabitants as $pet_type_name => $inhabitants ) {
+        foreach ( $this->_Inhabitants as $pet_type_name => $inhabitants ) {
             printf(
                 "%s в количестве %d\n",
                 $pet_type_name,
-                count( $inhabitants )
+                Count( $inhabitants )
             );
         }
     }
@@ -211,7 +211,7 @@ foreach ( $farm->getStorage() as $valuable_name => $valuable_instance ) {
     printf(
         "%s в количестве %d %s\n",
         $valuable_name,
-        $valuable_instance->count,
+        $valuable_instance->Count,
         $valuable_instance::getCountPronounce()
     );
 }
@@ -234,7 +234,7 @@ foreach ( $farm->getStorage() as $valuable_name => $valuable_instance ) {
     printf(
         "%s в количестве %d %s\n",
         $valuable_name,
-        $valuable_instance->count - $farm->getRememberedStorage()[ $valuable_name ]->count,
+        $valuable_instance->Count - $farm->getRememberedStorage()[ $valuable_name ]->Count,
         $valuable_instance::getCountPronounce()
     );
 }
@@ -247,7 +247,7 @@ foreach ( $farm->getStorage() as $valuable_name => $valuable_instance ) {
     printf(
         "%s в количестве %d %s\n",
         $valuable_name,
-        $valuable_instance->count,
+        $valuable_instance->Count,
         $valuable_instance::getCountPronounce()
     );
 }
