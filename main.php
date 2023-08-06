@@ -35,7 +35,7 @@ class Cow extends BasePet implements IPet {
     public function __construct() {
         parent::__construct();
 
-        print_r( "Вы приобрели корову!\n" );
+        print( "Вы приобрели корову!\n" );
     }
 
     public function produceValuable() {
@@ -51,7 +51,7 @@ class Chicken extends BasePet implements IPet {
     public function __construct() {
         parent::__construct();
 
-        print_r( "Вы приобрели курицу!\n" );
+        print( "Вы приобрели курицу!\n" );
     }
 
     public function produceValuable() {
