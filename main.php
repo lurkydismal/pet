@@ -7,14 +7,14 @@ interface IPet {
 }
 
 abstract class BasePet implements IPet {
-    private $ID = 0;
+    private $PetId = 0;
 
     public function __construct() {
-        $this->ID = uniqid( mt_rand() );
+        $this->PetId = uniqid( mt_rand() );
     }
 
     public function getID() {
-        return ( $this->ID );
+        return ( $this->PetId );
     }
 
     abstract public function produceValuable();
