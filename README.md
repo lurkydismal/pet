@@ -1,5 +1,7 @@
 # pet
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/219b745055124bdd88fe1a9ecc6440d2)](https://app.codacy.com/gh/lurkydismal/pet/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 > A simple PHP console application with OOP basics.
 
 ## Table of Contents
@@ -10,8 +12,9 @@
 
 ## Usage
 
-Run from console  
-`php main.php`
+```console
+php main.php
+```
 
 ## Project Status
 
