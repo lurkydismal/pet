@@ -18,7 +18,7 @@ abstract class BasePet implements IPet {
     }
 
     abstract public function produceValuable();
-    abstract static function getPronounce();
+    abstract public static function getPronounce();
 }
 
 interface IValuable {
