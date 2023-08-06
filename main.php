@@ -146,7 +146,7 @@ class Farm {
     }
 
     public function produceValuable() {
-        // unused $inhabitants_type
+        // Unused $inhabitants_type
         foreach ( $this->_Inhabitants as $inhabitants_type => $inhabitants ) {
             foreach ( $inhabitants as $inhabitant ) {
                 $product = $inhabitant->produceValuable();
@@ -210,7 +210,7 @@ $farm->buyAnimal( "Chicken", 20 );
 
 $farm->printInhabitantsCount();
 
-# First week
+// First week
 for ( $week_day_index = 0; $week_day_index < 7; $week_day_index++ ) {
     $farm->produceValuable();
 }
@@ -233,7 +233,7 @@ $farm->buyAnimal( "Cow", 1 );
 
 $farm->printInhabitantsCount();
 
-# Second week
+// Second week
 for ( $week_day_index = 0; $week_day_index < 7; $week_day_index++ ) {
     $farm->produceValuable();
 }
