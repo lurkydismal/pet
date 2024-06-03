@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Setup PHP Action
-        uses: shivammathur/setup-php@a4e22b60bbb9c1021113f2860347b0759f66fe5d # 2.30.0
+        uses: shivammathur/setup-php@fc14643b0a99ee9db10a3c025a33d76544fa3761 # 2.30.5
 
       - name: Verify formatting
         run: php -l main.php
