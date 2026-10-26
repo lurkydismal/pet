@@ -1,5 +1,7 @@
 # pet
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/219b745055124bdd88fe1a9ecc6440d2)](https://app.codacy.com/gh/lurkydismal/pet/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+
 > A PHP console application demonstrating object-oriented programming through a farm production simulation.
 
 ## Table of Contents
